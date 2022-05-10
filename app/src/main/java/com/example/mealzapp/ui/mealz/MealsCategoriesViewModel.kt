@@ -7,7 +7,7 @@ import com.example.mealzapp.model.response.MealsSingleObjectResponse
 
 class MealsCategoriesViewModel(private val repository: MealsRepo = MealsRepo()) : ViewModel() {
 
-    fun getMealsResponse(): List<MealsSingleObjectResponse> {
-        return repository.getMealsResponse()?.categories.orEmpty()
+    suspend fun getMealsResponse(): List<MealsSingleObjectResponse> {
+        return  repository.getMealsResponse().categories
     }
 }

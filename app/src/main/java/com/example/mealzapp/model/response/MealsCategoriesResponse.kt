@@ -1,7 +1,6 @@
 package com.example.mealzapp.model.response
 
 import com.google.gson.annotations.SerializedName
-
 // Gson deserialization :
 // Json -> data class
 
