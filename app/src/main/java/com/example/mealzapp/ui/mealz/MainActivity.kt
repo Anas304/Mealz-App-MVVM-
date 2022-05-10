@@ -1,4 +1,5 @@
 package com.example.mealzapp.ui.mealz
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MealzAppTheme {
-                    MealsCategoryScreen()
+                MealsCategoryScreen()
             }
         }
     }
@@ -28,20 +29,21 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MealsCategoryScreen() {
-    val viewModel : MealsCategoriesViewModel = viewModel()
-    val rememberMeals : MutableState<List<MealsSingleObjectResponse>>  =
-        remember{  mutableStateOf(emptyList<MealsSingleObjectResponse>()) }
+    val viewModel: MealsCategoriesViewModel = viewModel()
+    val rememberMeals: MutableState<List<MealsSingleObjectResponse>> =
+        remember { mutableStateOf(emptyList<MealsSingleObjectResponse>()) }
     val coroutineScope = rememberCoroutineScope()
 
-    LaunchedEffect(key1 = "GET_MEALS"){
+    /** Launched a Coroutine in Composable function with LaunchedEffect*/
+    LaunchedEffect(key1 = "GET_MEALS") {
         coroutineScope.launch(Dispatchers.IO) {
             val meals = viewModel.getMealsResponse()
             rememberMeals.value = meals
         }
     }
 
-    LazyColumn{
-        items(rememberMeals.value){ meal ->
+    LazyColumn {
+        items(rememberMeals.value) { meal ->
             Text(text = meal.name)
         }
     }
