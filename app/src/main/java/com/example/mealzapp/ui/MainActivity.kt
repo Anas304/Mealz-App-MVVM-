@@ -41,9 +41,9 @@ private fun MealzApp() {
             arguments = listOf(navArgument("meals_category_id") {
                 type = NavType.StringType
             })
-        ){
-            val viewModel : MealsDetailsViewModel = viewModel()
-           MealsDetailScreen(viewModel.mealState.value)
+        ) {
+            val viewModel: MealsDetailsViewModel = viewModel()
+            MealsDetailScreen(viewModel.mealState.value)
         }
     }
 }

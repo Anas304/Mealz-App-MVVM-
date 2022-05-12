@@ -8,9 +8,9 @@ import com.example.mealzapp.model.response.MealsSingleObjectResponse
 
 class MealsDetailsViewModel(
     private val savedStateHandle: SavedStateHandle,
-    private val repository: MealsRepo = MealsRepo()
-) : ViewModel() {
 
+) : ViewModel() {
+    private val repository: MealsRepo = MealsRepo.getInstance()
     var mealState = mutableStateOf<MealsSingleObjectResponse?>(null)
 
     init {

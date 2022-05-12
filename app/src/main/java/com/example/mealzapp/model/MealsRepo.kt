@@ -8,15 +8,23 @@ class MealsRepo(private val webService: MealsWebService = MealsWebService()) {
 
     private var cacheMeals = listOf<MealsSingleObjectResponse>()
 
-   suspend fun getMealsResponse(): MealsCategoriesResponse {
-       val response = webService.getMeals()
-        cacheMeals =  response.categories
-       return response
+    suspend fun getMealsResponse(): MealsCategoriesResponse {
+        val response = webService.getMeals()
+        cacheMeals = response.categories
+        return response
     }
 
-    fun getMealById(id : String) : MealsSingleObjectResponse? {
-       return cacheMeals.firstOrNull(){
+    fun getMealById(id: String): MealsSingleObjectResponse? {
+        return cacheMeals.firstOrNull() {
             it.id == id
+        }
+    }
+
+    companion object {
+        @Volatile
+        private var instance: MealsRepo? = null
+        fun getInstance() = instance ?: synchronized(this) {
+            instance ?: MealsRepo().also { instance = it }
         }
     }
 }
