@@ -18,16 +18,11 @@ import kotlinx.coroutines.launch
 
 class MealsCategoriesViewModel(private val repository: MealsRepo = MealsRepo()) : ViewModel() {
 
-
     init {
-        Log.d("TAG_Coroutine","We are about to launch a coroutine")
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("TAG_Coroutine","We have launched the coroutine")
             val meals = getMealsResponse()
-            Log.d("TAG_Coroutine","We have received the async data")
             mealsState.value = meals
         }
-        Log.d("TAG_Coroutine","Other Work!!")
     }
 
     val mealsState: MutableState<List<MealsSingleObjectResponse>> =
