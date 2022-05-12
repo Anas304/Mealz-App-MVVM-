@@ -26,7 +26,8 @@ import com.example.mealzapp.model.response.MealsSingleObjectResponse
 import com.example.mealzapp.ui.theme.MealzAppTheme
 
 @Composable
-fun MealsCategoryScreen(navigationCallback : (String) -> Unit) {
+fun MealsCategoryScreen(navigationCallback: (String) -> Unit) {
+
     val viewModel: MealsCategoriesViewModel = viewModel()
     val meals = viewModel.mealsState.value
     Surface(
@@ -36,14 +37,14 @@ fun MealsCategoryScreen(navigationCallback : (String) -> Unit) {
             contentPadding = PaddingValues(16.dp),
         ) {
             items(meals) { meal ->
-                MealsCategory(meal,navigationCallback)
+                MealsCategory(meal, navigationCallback)
             }
         }
     }
 }
 
 @Composable
-fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback : (String) -> Unit) {
+fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback: (String) -> Unit) {
 
     var isExpanded by remember { mutableStateOf(false) }
 
@@ -52,13 +53,11 @@ fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback : (String)
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable {
-                       navigationCallback(meal.id)
-            },
+            .clickable { navigationCallback(meal.id) },
         elevation = 50.dp,
         backgroundColor = Color.White,
 
-    ) {
+        ) {
         Row(modifier = Modifier.animateContentSize()) {
 
             Image(
@@ -114,6 +113,6 @@ fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback : (String)
 @Composable
 fun DefaultPreview() {
     MealzAppTheme {
-        MealsCategoryScreen( { } )
+        MealsCategoryScreen({ })
     }
 }

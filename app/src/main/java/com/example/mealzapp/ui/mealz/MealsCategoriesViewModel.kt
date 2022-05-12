@@ -17,6 +17,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MealsCategoriesViewModel(private val repository: MealsRepo = MealsRepo()) : ViewModel() {
+    val mealsState: MutableState<List<MealsSingleObjectResponse>> =
+        mutableStateOf(emptyList<MealsSingleObjectResponse>())
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -25,8 +27,7 @@ class MealsCategoriesViewModel(private val repository: MealsRepo = MealsRepo()) 
         }
     }
 
-    val mealsState: MutableState<List<MealsSingleObjectResponse>> =
-        mutableStateOf(emptyList<MealsSingleObjectResponse>())
+
 
     private suspend fun getMealsResponse(): List<MealsSingleObjectResponse> {
         return repository.getMealsResponse().categories

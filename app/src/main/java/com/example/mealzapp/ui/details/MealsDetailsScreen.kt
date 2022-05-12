@@ -20,12 +20,12 @@ import com.example.mealzapp.model.response.MealsSingleObjectResponse
 import com.example.mealzapp.ui.theme.MealzAppTheme
 
 @Composable
-fun MealsDetailScreen(meal: MealsSingleObjectResponse) {
+fun MealsDetailScreen(meal: MealsSingleObjectResponse?) {
     Column {
         Row {
             Card {
                 Image(
-                    painter = rememberImagePainter(data = meal.imageUrl,
+                    painter = rememberImagePainter(data = meal?.imageUrl,
                         builder = {
                             transformations(CircleCropTransformation())
                         }),
@@ -33,7 +33,7 @@ fun MealsDetailScreen(meal: MealsSingleObjectResponse) {
                     modifier = Modifier.size(200.dp)
                 )
             }
-            Text(text = meal.name, style = MaterialTheme.typography.h6)
+            Text(text = meal?.name ?: "default name", style = MaterialTheme.typography.h6)
         }
         Button(onClick = { /*TODO*/ }) {
             Text(text = "Change state of meal profile picture")
