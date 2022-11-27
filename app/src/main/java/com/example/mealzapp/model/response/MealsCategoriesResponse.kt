@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 // Gson deserialization :
 // Json -> data class
 
-data class MealsCategoriesResponse(val categories: List<MealsSingleObjectResponse>)
+data class MealsCategoriesResponse(@SerializedName("categories")val myCategories: List<MealsSingleObjectResponse>)
 
 data class MealsSingleObjectResponse(
     @SerializedName("idCategory")  val id: String,

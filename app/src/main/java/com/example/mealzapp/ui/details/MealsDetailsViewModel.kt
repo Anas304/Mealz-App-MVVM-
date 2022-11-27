@@ -3,7 +3,7 @@ package com.example.mealzapp.ui.details
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.mealzapp.model.MealsRepo
+import com.example.mealzapp.model.repository.MealsRepo
 import com.example.mealzapp.model.response.MealsSingleObjectResponse
 
 class MealsDetailsViewModel(

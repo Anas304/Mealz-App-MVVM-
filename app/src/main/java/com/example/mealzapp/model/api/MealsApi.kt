@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+
 class MealsWebService {
 
     private lateinit var api: MealsApi
@@ -19,12 +20,12 @@ class MealsWebService {
     }
 
 
-     suspend fun getMeals(): MealsCategoriesResponse {
+    suspend fun getMeals(): MealsCategoriesResponse {
         return api.getMeals()
     }
 
     interface MealsApi {
         @GET("categories.php")
-       suspend fun getMeals(): MealsCategoriesResponse
+        suspend fun getMeals(): MealsCategoriesResponse
     }
 }

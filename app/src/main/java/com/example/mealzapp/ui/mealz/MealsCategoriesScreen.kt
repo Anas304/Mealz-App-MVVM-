@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.mealzapp.model.response.MealsSingleObjectResponse
 import com.example.mealzapp.ui.theme.MealzAppTheme
@@ -43,6 +44,7 @@ fun MealsCategoryScreen(navigationCallback: (String) -> Unit) {
     }
 }
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback: (String) -> Unit) {
 
@@ -113,6 +115,6 @@ fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback: (String) 
 @Composable
 fun DefaultPreview() {
     MealzAppTheme {
-        MealsCategoryScreen({ })
+        MealsCategoryScreen { }
     }
 }
