@@ -60,22 +60,19 @@ fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback: (String) 
         backgroundColor = Color.White,
 
         ) {
-        Row(modifier = Modifier.animateContentSize()) {
-
-            Image(
-                painter = rememberImagePainter(data = meal.imageUrl), contentDescription = null,
-                modifier = Modifier
-                    .size(88.dp)
-                    .padding(4.dp)
-                    .align(CenterVertically)
-            )
 
             Column(
                 modifier = Modifier
-                    .align(Alignment.CenterVertically)
                     .fillMaxWidth(0.8f)
                     .padding(16.dp)
             ) {
+
+                Image(
+                    painter = rememberImagePainter(data = meal.imageUrl), contentDescription = null,
+                    modifier = Modifier
+                        .size(200.dp)
+                        .padding(4.dp)
+                )
 
                 Text(text = meal.name, style = MaterialTheme.typography.h6)
                 Spacer(modifier = Modifier.padding(5.dp))
@@ -89,7 +86,7 @@ fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback: (String) 
                     )
                 }
             }
-
+/*
             Icon(
 
                 imageVector = if (isExpanded)
@@ -99,15 +96,10 @@ fun MealsCategory(meal: MealsSingleObjectResponse, navigationCallback: (String) 
                 contentDescription = "Expandable Icon Description",
                 modifier = Modifier
                     .padding(16.dp)
-                    .align(
-                        if (isExpanded)
-                            Alignment.Bottom
-                        else CenterVertically
-                    )
                     .clickable { isExpanded = !isExpanded }
-            )
+            )*/
 
-        }
+
     }
 }
 

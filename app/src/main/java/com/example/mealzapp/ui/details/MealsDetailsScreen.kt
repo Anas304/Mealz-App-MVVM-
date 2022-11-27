@@ -1,5 +1,6 @@
 package com.example.mealzapp.ui.mealz
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
@@ -36,16 +38,17 @@ import com.example.mealzapp.model.response.MealsSingleObjectResponse
 import com.example.mealzapp.nav.Screens
 import kotlin.math.min
 
+private const val TAG = "Meals_Details"
+
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun MealsDetailScreen(meal: MealsSingleObjectResponse?) {
+fun MealsDetailScreen(meal: MealsSingleObjectResponse?,navController: NavController) {
 
     //Scroll Animations
     val scrollState = rememberScrollState()
     val offset = min(1f, 1 - (scrollState.value / 600f))
     val sizeAnim by animateDpAsState(targetValue = max(100.dp, 200.dp * offset))
 
-    val navController = rememberNavController()
     val context = LocalContext.current
     Scaffold(
         topBar = {
@@ -57,15 +60,13 @@ fun MealsDetailScreen(meal: MealsSingleObjectResponse?) {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = {
-                        Toast.makeText(
-                            context,
-                            "Require Additional work but you can use default back button",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }) {
-                        Icon(Icons.Filled.ArrowBack, "backIcon")
-                    }
+
+                        IconButton(onClick = { navController.navigateUp()}
+
+                        ) {
+                            Icon(Icons.Filled.ArrowBack, "backIcon")
+                        }
+
                 },
                 backgroundColor = MaterialTheme.colors.primary,
                 contentColor = Color.White,
@@ -100,7 +101,7 @@ fun MealsDetailScreen(meal: MealsSingleObjectResponse?) {
                 ) {
                     Image(
                         modifier = Modifier.padding(20.dp),
-                        painter = painterResource(id = R.drawable.ic_baseline_date_range_24),
+                        painter = painterResource(id = R.drawable.ic_baseline_access_time),
                         contentDescription = ""
                     )
                     Text(text = "Reading time  3mins")
@@ -109,7 +110,7 @@ fun MealsDetailScreen(meal: MealsSingleObjectResponse?) {
 
                     Image(
                         modifier = Modifier.padding(20.dp),
-                        painter = painterResource(id = R.drawable.ic_baseline_access_time),
+                        painter = painterResource(id = R.drawable.ic_baseline_date_range_24),
                         contentDescription = ""
                     )
                     Text(text = "2 Nov 2022")

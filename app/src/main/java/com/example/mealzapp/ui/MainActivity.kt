@@ -43,7 +43,7 @@ private fun MealzApp() {
             })
         ) {
             val viewModel: MealsDetailsViewModel = viewModel()
-            MealsDetailScreen(viewModel.mealState.value)
+            MealsDetailScreen(viewModel.mealState.value,navController)
         }
     }
 }
